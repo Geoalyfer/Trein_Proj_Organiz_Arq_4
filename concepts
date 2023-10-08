@@ -1,0 +1,25 @@
+A partir do set criado para a lista de tipos de pasta, o próximo passo é criar as pastas por tipo no arquivo onde se deseja organizar por tipos de pasta.
+  
+lista_tipos
+
+{'docx', 'ipynb', 'pptx', 'txt', 'xlsx'}
+
+Utiliza-se a função os.mkdir para criar as novas pastas a partir da lista de tipos processada.
+Mas, uma vez que as pastas foram criadas, nao é possível criar novas pastas com o mesmo nome.
+
+for tipo in lista_tipos:
+    os.mkdir(tipo)
+
+Então, utiliza-se a função os.path para verificar se já existe uma pasta criada. Além disso, uma estrutura condicional é necessária para processar um nova criação de pasta com a função os.mkdir .
+
+for tipo in lista_tipos:
+    if os.path.exists(tipo):
+        pass
+    else: 
+        os.mkdir(tipo)
+
+for arquivo in lista_arquivos:
+    pasta_destino = arquivo.split(".")[-1]
+    de = os.path.join(os.getcwd(), arquivo)
+    para = os.path.join(os.getcwd(), pasta_destino, arquivo)
+    os.replace(de, para)
